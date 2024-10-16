@@ -1,0 +1,11 @@
+﻿@page "/qualitymonitorview"
+
+@inject QualityMonitor QualityMonitor
+
+<h3>QualityMonitorView</h3>
+<br />
+<p>Es sind @datas.Count Qualitätsdaten vorhanden.</p>
+<p>Davon sind @QualityMonitor.GetDataFilterdByQuality(Quality.Schlecht).Count nicht in Ordnung!</p>
+@code {
+    List<Data> datas = QualityMonitor.QualityDatas;
+}
