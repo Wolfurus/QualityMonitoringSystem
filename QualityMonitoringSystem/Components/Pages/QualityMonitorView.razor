@@ -6,6 +6,26 @@
 <br />
 <p>Es sind @datas.Count Qualitätsdaten vorhanden.</p>
 <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(Quality.Schlecht).Count nicht in Ordnung!</p>
+<br />
+@foreach (var listOfDatas in GetSortedDatasPerArticle())
+{
+    <ArticleDiagramComponent Datas="@listOfDatas.Value" Name="@listOfDatas.Key"></ArticleDiagramComponent>
+}
 @code {
     List<Data> datas = QualityMonitor.QualityDatas;
+
+    private SortedDictionary<string, List<Data>> GetSortedDatasPerArticle()
+    {
+        SortedDictionary<string, List<Data>> sortedData = new SortedDictionary<string, List<Data>>();
+
+        foreach (var data in datas)
+        {
+            if (!sortedData.ContainsKey(data.ArticleDescriptions))
+            {
+                sortedData.Add(data.ArticleDescriptions, []);
+            }
+            sortedData[data.ArticleDescriptions].Add(data);
+        }
+        return sortedData;
+    }
 }

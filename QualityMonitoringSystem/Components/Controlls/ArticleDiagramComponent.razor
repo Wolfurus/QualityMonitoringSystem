@@ -1,0 +1,7 @@
+﻿<h3>@Name</h3>
+<p>@Datas.Count Daten sind vorhanden.</p>
+<p>Davon sind @QualityMonitor.GetDataFilterdByQuality(@Datas, Quality.Schlecht).Count nicht in Ordnung</p>
+@code {
+    [Parameter] public string Name { get; set; }
+    [Parameter] public List<Data> Datas { get; set; }
+}

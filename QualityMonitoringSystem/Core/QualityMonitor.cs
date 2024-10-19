@@ -49,6 +49,11 @@ namespace QualityMonitoringSystem.Core
         {
             return QualityDatas.Where(qd => qd.Qualitaet.Equals(qualityCode)).ToList();
         }
+
+        public static List<Data> GetDataFilterdByQuality(List<Data> datas, Quality qualityCode)
+        {
+            return datas.Where(qd => qd.Qualitaet.Equals(qualityCode)).ToList();
+        }
     }
 }
 
