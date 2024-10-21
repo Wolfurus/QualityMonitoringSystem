@@ -1,7 +1,20 @@
-﻿<h3>@Name</h3>
-<p>@Datas.Count Daten sind vorhanden.</p>
-<p>Davon sind @QualityMonitor.GetDataFilterdByQuality(@Datas, Quality.Schlecht).Count nicht in Ordnung</p>
+﻿<div class="col-sm-3 mb-3 mb-sm-0">
+    <div class="card">
+        <div class="card-body">
+            <h3>@Name</h3>
+            <p>@Datas.Count Daten sind vorhanden.</p>
+            <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(@Datas, Quality.Schlecht).Count nicht in Ordnung</p>
+            <div style="min-height:20px; max-width:@GetPercent(Datas.Count, QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Schlecht).Count)px; background-color:red"></div>
+            <div style="min-height:20px; max-width:@GetPercent(Datas.Count, QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Gut).Count)px; background-color:green"></div>
+        </div>
+    </div>
+</div>
 @code {
     [Parameter] public string Name { get; set; }
     [Parameter] public List<Data> Datas { get; set; }
-}
+
+    private int GetPercent(double total, double count)
+    {
+        return Convert.ToInt32(100.0 / total * count);
+    }
+    }
