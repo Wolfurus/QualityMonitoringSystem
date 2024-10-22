@@ -8,12 +8,10 @@
 <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(Quality.Schlecht).Count nicht in Ordnung!</p>
 <br />
 <div class="row ">
-    
-        @foreach (var listOfDatas in GetSortedDatasPerArticle())
-        {
-            <ArticleDiagramComponent Datas="@listOfDatas.Value" Name="@listOfDatas.Key"></ArticleDiagramComponent>
-        }
-    </div>
+    @foreach (var listOfDatas in GetSortedDatasPerArticle())
+    {
+        <ArticleDiagramComponent Datas="@listOfDatas.Value" Name="@listOfDatas.Key"></ArticleDiagramComponent>
+    }
 </div>
 @code {
     List<Data> datas = QualityMonitor.QualityDatas;

@@ -1,7 +1,10 @@
 ﻿<div class="col-sm-3 mb-3 mb-sm-0">
     <div class="card">
         <div class="card-body">
-            <h3>@Name</h3>
+            <div class="row">
+                <h3 class="col-8">@Name</h3>
+                <a href="/edit/@Name" type="button" class="btn btn-primary col-4"><img src="Images/pen.svg"/></a>
+            </div>
             <p>@Datas.Count Daten sind vorhanden.</p>
             <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(@Datas, Quality.Schlecht).Count nicht in Ordnung</p>
             <div style="min-height:20px; max-width:@GetPercent(Datas.Count, QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Schlecht).Count)px; background-color:red"></div>
@@ -17,4 +20,4 @@
     {
         return Convert.ToInt32(100.0 / total * count);
     }
-    }
+}
