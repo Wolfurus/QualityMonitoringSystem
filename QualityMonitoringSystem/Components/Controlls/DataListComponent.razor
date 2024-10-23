@@ -1,0 +1,39 @@
+﻿@if (Datas == null)
+{
+    <text>
+        Datas loading...
+    </text>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    DMC
+                </th>
+                <th>
+                    Beschreibung
+                </th>
+                <th>
+                    Qualität
+                </th>
+                <th>
+                    Zeitstempel
+                </th>
+            </tr>
+        </thead>
+    </table>
+}
+
+@code {
+    public List<QualityData> Datas { get; set; }
+    [Parameter] public int Dmc { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        Datas = QualityMonitor.GetDataFilterdByArticleCode(Dmc.ToString());
+    }
+
+}

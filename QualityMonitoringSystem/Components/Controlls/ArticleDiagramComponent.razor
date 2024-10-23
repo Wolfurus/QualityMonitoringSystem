@@ -1,20 +1,23 @@
-﻿<div class="col-sm-3 mb-3 mb-sm-0">
+﻿
+<div class="col-sm-3 mb-3 mb-sm-0">
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <h3 class="col-8">@Name</h3>
-                <a href="/edit/@Name" type="button" class="btn btn-primary col-4"><img src="Images/pen.svg"/></a>
+                <a href="/edit/@Name" type="button" class="btn btn-primary col-4">
+                    <img src="Images/pen.svg" alt="Edit-Button" />
+                </a>
             </div>
             <p>@Datas.Count Daten sind vorhanden.</p>
-            <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(@Datas, Quality.Schlecht).Count nicht in Ordnung</p>
+            <p>Davon sind @QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Schlecht).Count nicht in Ordnung</p>
             <div style="min-height:20px; max-width:@GetPercent(Datas.Count, QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Schlecht).Count)px; background-color:red"></div>
             <div style="min-height:20px; max-width:@GetPercent(Datas.Count, QualityMonitor.GetDataFilterdByQuality(Datas, Quality.Gut).Count)px; background-color:green"></div>
         </div>
     </div>
 </div>
 @code {
-    [Parameter] public string Name { get; set; }
-    [Parameter] public List<Data> Datas { get; set; }
+    [Parameter] public string? Name { get; set; }
+    [Parameter] public List<QualityData>? Datas { get; set; }
 
     private int GetPercent(double total, double count)
     {

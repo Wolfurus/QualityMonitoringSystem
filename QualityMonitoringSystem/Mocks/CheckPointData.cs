@@ -2,6 +2,7 @@
 
 // Ignore Spelling: Zeitstempel Dmc Qualitaet
 
+using QualityMonitoringSystem.Models;
 using System.Text.Json;
 
 namespace QualityMonitoringSystem.Mocks
@@ -33,18 +34,12 @@ namespace QualityMonitoringSystem.Mocks
 
         private static string BuildJSON(string articleCode, int qualityNumber)
         {
-            Data data = new Data() { Dmc = articleCode, ArticleDescriptions=articleCode, Qualitaet = qualityNumber == 0 ? Quality.Schlecht : Quality.Gut, Zeitstempel = DateTime.Now.ToLongDateString()};
+            QualityData data = new QualityData() { Dmc = articleCode, ArticleDescriptions=articleCode, Qualitaet = qualityNumber == 0 ? Quality.Schlecht : Quality.Gut, Zeitstempel = DateTime.Now.ToLongDateString()};
             return JsonSerializer.Serialize(data);
         }
     }
 
-    public class Data
-    {
-        public string? Zeitstempel { get; set; }
-        public string? Dmc { get; set; }
-        public string? ArticleDescriptions { get; set; }
-        public Quality? Qualitaet { get; set; }
-    }
+
 
     public enum Quality
     {

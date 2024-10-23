@@ -2,6 +2,34 @@
 
 <h3>ArticleCode @Dmc</h3>
 
+<form>
+    <label for="articlecode">Artikelcode: </label>
+    <input id="articlecode" type="text" @bind="Dmc" />
+    <br />
+    <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
+<br />
+<DataListComponent Dmc="@Dmc"></DataListComponent>
 @code {
-    [Parameter] public int Dmc { get; set; }
+    [Parameter]
+    public int Dmc
+    {
+        get => Dmc;
+
+        set
+        {
+            oldDmc = Dmc;
+            Dmc = value;
+        }
+    }
+    private int oldDmc;
+
+    private void Submit()
+    {
+        List<QualityData> datas = QualityMonitor.GetDataFilterdByArticleCode(oldDmc.ToString());
+        foreach (var data in datas)
+        {
+            data.Dmc = Dmc.ToString();
+        }
+    }
 }

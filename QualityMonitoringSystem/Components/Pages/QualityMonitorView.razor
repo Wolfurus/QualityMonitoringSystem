@@ -14,11 +14,11 @@
     }
 </div>
 @code {
-    List<Data> datas = QualityMonitor.QualityDatas;
+    List<QualityData> datas = QualityMonitor.QualityDatas;
 
-    private SortedDictionary<string, List<Data>> GetSortedDatasPerArticle()
+    private SortedDictionary<string, List<QualityData>> GetSortedDatasPerArticle()
     {
-        SortedDictionary<string, List<Data>> sortedData = new SortedDictionary<string, List<Data>>();
+        SortedDictionary<string, List<QualityData>> sortedData = new SortedDictionary<string, List<QualityData>>();
 
         foreach (var data in datas)
         {
