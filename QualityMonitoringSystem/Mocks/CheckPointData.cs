@@ -27,14 +27,14 @@ namespace QualityMonitoringSystem.Mocks
 
             for (int i = 0; i < countOfProducts; i++)
             {
-                datas.Add(BuildJSON(articleCode[rnd.Next(0, articleCode.Count)], rnd.Next(0,2)));
+                datas.Add(BuildJSON(i+1, articleCode[rnd.Next(0, articleCode.Count)], rnd.Next(0,2)));
             }
             return datas;
         }
 
-        private static string BuildJSON(string articleCode, int qualityNumber)
+        private static string BuildJSON(int id, string articleCode, int qualityNumber)
         {
-            QualityData data = new QualityData() { Dmc = articleCode, ArticleDescriptions=articleCode, Qualitaet = qualityNumber == 0 ? Quality.Schlecht : Quality.Gut, Zeitstempel = DateTime.Now.ToLongDateString()};
+            QualityData data = new QualityData() { Id = id, Dmc = articleCode, ArticleDescriptions = articleCode, Qualitaet = qualityNumber == 0 ? Quality.Schlecht : Quality.Gut, Zeitstempel = DateTime.Now.ToLongDateString() };
             return JsonSerializer.Serialize(data);
         }
     }

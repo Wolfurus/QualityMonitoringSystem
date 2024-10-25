@@ -20,7 +20,6 @@ namespace QualityMonitoringSystem.Core
                     return _qualityDatas;
                 }
                 LoadData();
-
                 return _qualityDatas;
             }
             set
@@ -54,12 +53,6 @@ namespace QualityMonitoringSystem.Core
         public static List<QualityData> GetDataFilterdByQuality(List<QualityData> datas, Quality qualityCode)
         {
             return datas.Where(qd => qd.Qualitaet.Equals(qualityCode)).ToList();
-        }
-
-        public static List<QualityData> UpdateDatas(List<QualityData> datas)
-        {
-            //ToDo: EF Anbindung aufbauen!
-            throw new NotImplementedException();
         }
     }
 }

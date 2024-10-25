@@ -1,11 +1,18 @@
+using Microsoft.EntityFrameworkCore;
 using QualityMonitoringSystem.Components;
 using QualityMonitoringSystem.Core;
+using QualityMonitoringSystem.Core.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
-builder.Services.AddSingleton<QualityMonitor, QualityMonitor>();
+builder.Services.AddDbContextFactory<QualityMonitoringSystemContext>(
+    opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("QualityMonitoringSystem")));
+
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+
+builder.Services.AddTransient<IQualityMonitorEfRepository, QualityMonitorEfRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

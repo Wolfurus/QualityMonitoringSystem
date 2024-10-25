@@ -1,5 +1,7 @@
 ﻿@page "/edit/{dmc:int}"
 
+@inject IQualityMonitorEfRepository QualityMonitorEfRepository
+
 <h3>ArticleCode @Dmc</h3>
 
 <form>
@@ -26,7 +28,7 @@
 
     private void Submit()
     {
-        List<QualityData> datas = QualityMonitor.GetDataFilterdByArticleCode(oldDmc.ToString());
+        List<QualityData> datas = QualityMonitorEfRepository.GetDatasByCode(oldDmc.ToString());
         foreach (var data in datas)
         {
             data.Dmc = Dmc.ToString();

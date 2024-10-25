@@ -1,4 +1,6 @@
-﻿@if (Datas == null)
+﻿@inject IQualityMonitorEfRepository QualityMonitorEfRepository
+
+@if (Datas == null)
 {
     <text>
         Datas loading...
@@ -33,7 +35,7 @@ else
 
     protected override void OnInitialized()
     {
-        Datas = QualityMonitor.GetDataFilterdByArticleCode(Dmc.ToString());
+        Datas = QualityMonitorEfRepository.GetDatasByCode(Dmc.ToString());
     }
 
 }

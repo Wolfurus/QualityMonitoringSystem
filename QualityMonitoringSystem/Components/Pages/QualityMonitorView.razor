@@ -1,6 +1,6 @@
 ﻿@page "/qualitymonitorview"
 
-@inject QualityMonitor QualityMonitor
+@inject IQualityMonitorEfRepository QualityMonitorEfRepository
 
 <h3>QualityMonitorView</h3>
 <br />
@@ -14,7 +14,12 @@
     }
 </div>
 @code {
-    List<QualityData> datas = QualityMonitor.QualityDatas;
+    List<QualityData> datas;
+
+    protected override void OnInitialized()
+    {
+        datas = QualityMonitorEfRepository.GetData();
+    }
 
     private SortedDictionary<string, List<QualityData>> GetSortedDatasPerArticle()
     {

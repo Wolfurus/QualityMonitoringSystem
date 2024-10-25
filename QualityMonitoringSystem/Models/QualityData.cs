@@ -1,4 +1,5 @@
 ﻿using QualityMonitoringSystem.Mocks;
+using System.ComponentModel.DataAnnotations;
 
 namespace QualityMonitoringSystem.Models
 {
